@@ -1,0 +1,9 @@
+<% @restaurants.each do |r| %>
+  <li style = "list-style-type: none; text-decoration: none;">
+    <h1>
+      <%= link_to r.name, restaurant_path(r), style: 'text-decoration: none;' %>
+    </h1>
+  </li>
+<% end %>
+
+<%= link_to "Add new restaurant", new_restaurant_path, class: "btn btn-primary" %>

@@ -1,0 +1,22 @@
+<% r = @restaurant %>
+<h1>
+    <%= r.name %>
+</h1>
+<p>
+  Type of restaurant: <%= r.category %>
+</p>
+<p>
+  Address: <%= r.address %>
+</p>
+<p>
+  Phone Number: <%= r.phone_number %>
+</p>
+<% r.reviews.each do |review| %>
+  Rating:
+  <% review.rating.times do %>
+    ⭐
+  <% end %>
+  <p><%= review.content %></p>
+<% end %>
+<%= link_to 'Add new Review', new_restaurant_review_path(r), class: "btn btn-primary" %>
+<%= link_to 'Back', restaurants_path, class: "btn btn-primary" %>

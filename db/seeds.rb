@@ -8,16 +8,22 @@
 require 'faker'
 
 puts 'Cleaning out the database'
+
+Review.delete_all
 Restaurant.delete_all
 
 puts 'Populating Database'
 5.times do
-  Restaurant.create(
+  restaurant_ref = Restaurant.create(
     name: Faker::Restaurant.name,
-    category: Faker::Restaurant.type,
+    category: %w[chinese italian japanese french belgian].sample,
     address: Faker::Address.full_address,
     phone_number: Faker::PhoneNumber.cell_phone
   )
+  5.times do
+    Review.create(rating: rand(6), content: Faker::Lorem.paragraph, restaurant: restaurant_ref)
+  end
 end
 
 puts "Added #{Restaurant.count} restaurants to the database!"
+puts "Added #{Review.count} total reviews to the database!"
